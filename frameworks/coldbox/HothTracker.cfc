@@ -3,7 +3,7 @@ component
 extends = 'Hoth.HothTracker'
 {
 	public Hoth.frameworks.coldbox.HothTracker function init () {
-		super.init();
+		super.init(argumentCollection=arguments);
 		return this;
 	}
 
