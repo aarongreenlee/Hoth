@@ -7,14 +7,14 @@ extends = 'Hoth.HothTracker'
 		return this;
 	}
 
-	public void function track(ExceptionBean) {
+	/** Returns true if Hoth itself did not error. */
+	public boolean function track(ExceptionBean) {
 		local.args = {
 			 detail 	= arguments.ExceptionBean.getDetail()
 			,message 	= arguments.ExceptionBean.getMessage()
 			,stacktrace = arguments.ExceptionBean.getStackTrace()
 			,tagcontext = arguments.ExceptionBean.getTagContext()
 		};
-		super.track(local.args);
-		return;
+		return super.track(local.args);
 	}
 }

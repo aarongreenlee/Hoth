@@ -43,7 +43,7 @@ component extends="mxunit.framework.TestCase"  {
 			apples = undefinedVariable;
 		} catch (any exception) {
 			variables.hashOfStack = hash(lcase(exception.stacktrace),'SHA');
-			variables.HothTracker.track(exception);
+			local.HothOk = variables.HothTracker.track(exception);
 		}
 
 		// Verify an exception was saved.

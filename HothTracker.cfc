@@ -26,7 +26,8 @@ name='HothTracker'
 
 	/** Track an exception.
 		@ExceptionStructure A Struct with at least the following keys: 'detail,type,tagContext,StackTrace,Message' */
-	public void function track (ExceptionStructure) {
+	public boolean function track (ExceptionStructure) {
+		try {
 		local.e = {
 			 detail 	= structKeyExists(arguments.ExceptionStructure,'detail') ? arguments.ExceptionStructure.detail : '_noDetail'
 			,message 	= structKeyExists(arguments.ExceptionStructure,'message') ? arguments.ExceptionStructure.message : '_noMessage'
@@ -87,8 +88,10 @@ name='HothTracker'
 
 			local.mail.Send();
 		}
-
-		return;
+		} catch (any e) {
+			return false;
+		}
+		return true;
 	}
 
 	// Private Methods Follow -------------------------------------------------------
