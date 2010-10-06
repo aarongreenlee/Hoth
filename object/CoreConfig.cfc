@@ -6,7 +6,7 @@
 component
 {
 	/** Construct a configuration object for Hoth. */
-	public function init () {
+	public Hoth.object.iHothConfig function init () {
 		local.md = getMetadata(this);
 		local.n = arrayLen(local.md.properties);
 		for (local.i=1; local.i <= local.n; local.i++) {
