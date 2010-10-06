@@ -1,11 +1,11 @@
-/** Unit Test Config for Hoth */
+/** Default configuration for Hoth. */
 component
 	implements='Hoth.object.iHothConfig'
 	extends='Hoth.object.CoreConfig'
 	accessors=true {
 
 	/** What is the name of your application? */
-	property name='applicationName'			default='HothUnitTests';
+	property name='applicationName'			default='HothDefaultConfig';
 
 	/** How many seconds should we lock file operations?
 		For most operations this is exclusive to a unique exception. */
@@ -17,15 +17,15 @@ component
 
 	// ------------------------------------------------------------------------------
 	/** Would you like new exceptions to be emailed to you? */
-	property name='EmailNewExceptions' 		default='true';
+	property name='EmailNewExceptions' 		default='false';
 
 	/** What address(es) should receive these e-mails? */
-	property name='EmailNewExceptionsTo' 	default='aarongreenlee@gmail.com';
+	property name='EmailNewExceptionsTo' 	default='you@yourdomain.com';
 
 	/** What address would you like these emails sent from? */
-	property name='EmailNewExceptionsFrom' 	default='aarongreenlee@gmail.com';
+	property name='EmailNewExceptionsFrom' 	default='hoth@yourdomain.com';
 
 	/** Would you like the raw JSON attached to the e-mail? */
-	property name='EmailNewExceptionsFile' 	default='true';
+	property name='EmailNewExceptionsFile' 	default='false';
 	// ------------------------------------------------------------------------------
 }

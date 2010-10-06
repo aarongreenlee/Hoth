@@ -1,6 +1,6 @@
 /** Hoth can work with ColdBox. Cool! */
 component
-extends = 'HothTracker'
+extends = 'Hoth.HothTracker'
 {
 	public Hoth.HothForColdBox function init () {
 		super.init();

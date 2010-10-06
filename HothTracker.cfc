@@ -8,7 +8,7 @@ name='HothTracker'
 		// will use our default.
 		variables.Config = (structKeyExists(arguments, 'HothConfig'))
 			? arguments.HothConfig
-			: new Hoth.HothConfig();
+			: new Hoth.object.HothConfig();
 
 		VARIABLES._NAME = 'Hoth_' & variables.Config.getApplicationName();
 
