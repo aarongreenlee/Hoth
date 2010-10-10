@@ -93,7 +93,7 @@ name='HothTracker'
 						: CGI.http_host & CGI.path_info;
 
 					local.emailBody = [
-						 "Hoth tracked a new exception (' & local.index.key & ')."
+						 "Hoth tracked a new exception (" & local.index.key & ")."
 						,"Message: " & local.e.message
 						,"Machine Name: " & local.INetAddress.getLocalHost().getHostName()
 						,"Address: " & local.url
