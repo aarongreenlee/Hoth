@@ -36,19 +36,37 @@ component extends="mxunit.framework.TestCase"  {
 		return;
 	}
 
-	// isAllowedAccess() -------------------------------------------------------------
-
+	// ------------------------------------------------------------------------------
+	/** Test default ColdFusion exception tracking. */
 	public void function track() {
 		try {
-			apples = undefinedVariable;
+			coldfusion = undefinedVariable;
 		} catch (any exception) {
-			variables.hashOfStack = hash(lcase(exception.stacktrace),'SHA');
+			local.hashOfStack = hash(lcase(exception.stacktrace),'SHA');
 			local.HothOk = variables.HothTracker.track(exception);
+
 		}
 
+		local.file = local.hashOfStack & '.log';
 		// Verify an exception was saved.
-		assert( fileExists(variables.paths.exceptions & '\' & variables.hashOfStack & '.log'), 'Expected #variables.hashOfStack#.log exception file.');
-		assert( fileExists(variables.paths.incidents & '\' & variables.hashOfStack & '.log'), 'Expected #variables.hashOfStack#.log incident file.');
+		assert( fileExists(variables.paths.exceptions & '\' & local.file), 'Expected #local.hashOfStack#.log exception file.');
+		assert( fileExists(variables.paths.incidents & '\' & local.file), 'Expected #local.hashOfStack#.log incident file.');
+
+		return;
+	}
+	/** Test a ColdBox exception. */
+	public void function trackForColdBox() {
+		try {
+			coldbox = undefinedVariable;
+		} catch (any exception) {
+			local.ExceptionBean = new coldbox.system.beans.ExceptionBean(errorStruct=exception);
+			local.hashOfStack = hash(lcase(exception.stacktrace),'SHA');
+			local.HothOk = variables.HothTracker.track(exception);
+		}
+		local.file = local.hashOfStack & '.log';
+		// Verify an exception was saved.
+		assert( fileExists(variables.paths.exceptions & '\' & local.file), 'Expected #local.hashOfStack#.log exception file.');
+		assert( fileExists(variables.paths.incidents & '\' & local.file), 'Expected #local.hashOfStack#.log incident file.');
 
 		return;
 	}
@@ -61,17 +79,17 @@ component extends="mxunit.framework.TestCase"  {
 			try {
 				apples = undefinedVariable2;
 			} catch (any exception) {
-				variables.hashOfStack = hash(lcase(exception.stacktrace),'SHA');
+				local.hashOfStack = hash(lcase(exception.stacktrace),'SHA');
 				variables.HothTracker.track(exception);
 			}
 		}
-
+		local.file = local.hashOfStack & '.log';
 		// Verify an exception was saved.
-		assert( fileExists(variables.paths.exceptions & '\' & variables.hashOfStack & '.log'), 'Expected #variables.hashOfStack#.log exception file.');
+		assert( fileExists(variables.paths.exceptions & '\' & local.file), 'Expected #local.hashOfStack#.log exception file.');
 
 		// Verify our incident file was saved
-		local.incidentFile = variables.paths.incidents & '\' & variables.hashOfStack & '.log';
-		assert( fileExists(local.incidentFile), 'Expected #variables.hashOfStack#.log incident file.');
+		local.incidentFile = variables.paths.incidents & '\' & local.file;
+		assert( fileExists(local.incidentFile), 'Expected #local.file# incident file.');
 
 		// Verify our incident file has five incidents (one per line)
 		local.incidents = FileOpen(local.incidentFile, 'read');
