@@ -97,8 +97,7 @@ name='HothTracker'
 						,"Message: " & local.e.message
 						,"Machine Name: " & local.INetAddress.getLocalHost().getHostName()
 						,"Address: " & local.url
-						,"If you would like to view the exception outside of Hoth just copy and paste into Firebug''s console like so:#chr(13)##chr(13)#x={the contents of the file}"
-						,"Then press CRTL+Enter and view the console."
+						,"To view the exception info attached copy and paste into FireBug's console (x = exception) and press CRTL+Enter."
 					];
 
 					local.Mail = new Mail(	 subject='Hoth Exception ' & local.index.key
