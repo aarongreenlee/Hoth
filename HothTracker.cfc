@@ -85,9 +85,21 @@ name='HothTracker'
 
 			// Outside the lock, send mail if requested
 			if (!local.exceptionIsKnown && variables.Config.getEmailNewExceptions() ) {
-					local.emailBody = 'Hoth tracked a new exception (' & local.index.key & ').'
-									& chr(13) & chr(13) & "Message: " & local.e.message & chr(13) & chr(13)
-									& 'If you would like to view the exception outside of Hoth just copy and paste into Firebug''s console like so:#chr(13)##chr(13)#x={the contents of the file}#chr(13)##chr(13)#Then press CRTL+Enter and view the console.';
+
+					local.INetAddress = createObject( 'java', 'java.net.InetAddress' );
+
+					local.url = (len(CGI.QUERY_STRING) > 0)
+						? CGI.http_host & CGI.path_info & '?' & Cgi.QUERY_STRING
+						: CGI.http_host & CGI.path_info;
+
+					local.emailBody = [
+						 "Hoth tracked a new exception (' & local.index.key & ')."
+						,"Message: " & local.e.message
+						,"Machine Name: " & local.INetAddress.getLocalHost().getHostName()
+						,"Address: " & local.url
+						,"If you would like to view the exception outside of Hoth just copy and paste into Firebug''s console like so:#chr(13)##chr(13)#x={the contents of the file}"
+						,"Then press CRTL+Enter and view the console."
+					];
 
 					local.Mail = new Mail(	 subject='Hoth Exception ' & local.index.key
 											,to=variables.Config.getEmailNewExceptionsTo()
@@ -97,7 +109,12 @@ name='HothTracker'
 					if ( variables.Config.getEmailNewExceptionsFile() )
 						local.Mail.addParam(file=local.exceptionFile);
 
-					local.Mail.addPart(type='text',charset='utf-8',wraptext=72,body=local.emailBody);
+					local.Mail.addPart(
+						 type='text'
+						,charset='utf-8'
+						,wraptext=72
+						,body=arrayToList(local.emailBody, "#chr(13)##chr(13)#")
+					);
 
 					local.mail.Send();
 			}
