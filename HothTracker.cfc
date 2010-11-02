@@ -28,7 +28,6 @@ name='HothTracker'
 	/** Track an exception.
 		@ExceptionStructure A ColdFusion cfcatch or a supported object from a Framework or Application. */
 	public boolean function track (any Exception) {
-
 		local.ExceptionStructure = parseException(arguments.Exception);
 
 		// If we did not parse what we are supposed to
@@ -71,7 +70,6 @@ name='HothTracker'
 
 				if (!local.exceptionIsKnown)
 					fileWrite(local.exceptionFile ,serializeJSON(local.e),'UTF-8');
-
 
 				// Create an incident if the file does not exist
 				if (!fileExists(local.incidentsFile)) {
@@ -118,7 +116,14 @@ name='HothTracker'
 					local.mail.Send();
 			}
 		// ------------------------------------------------------------------------------
-		} catch (any e) {return false;}
+		} catch (any e) {
+			if (structKeyExists(url, 'debugHoth')) {
+				writeDump('Hoth Failed!');
+				writeDump(e);
+				abort;
+			}
+			return false;
+		}
 		// ------------------------------------------------------------------------------
 		return true;
 	}
