@@ -100,7 +100,7 @@ name='HothTracker'
 						,"To view the exception info attached copy and paste into FireBug's console (x = exception) and press CRTL+Enter."
 					];
 
-					local.Mail = new Mail(	 subject='Hoth Exception ' & local.index.key
+					local.Mail = new Mail(	 subject='Hoth Exception (' & cgi.HTTP_HOST & ') ' & local.index.key
 											,to=variables.Config.getEmailNewExceptionsTo()
 											,from=variables.Config.getEmailNewExceptionsFrom());
 
