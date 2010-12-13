@@ -14,9 +14,19 @@
 	extend this object and provide their own values within the property
 	declaration.
 
+	// -------------------------------------------------------------------------
+	Modified		: 	12/13/2010 10:04:06 AM by Aaron Greenlee.
+					-	Added support for global settings.
+
 */
 component
 {
+
+	this.GlobalHothSettings =
+	{
+		globalDatabase = '/hoth/db/'
+	};
+
 	/** Construct a configuration object for Hoth. */
 	public Hoth.object.iHothConfig function init ()
 	{
@@ -52,5 +62,33 @@ component
 				return getLogPathExpanded() & '/' & lcase(arguments.name) & '.log';
 			break;
 		}
+	}
+
+	/**
+	 * Returns the number of seconds since UTC January 1, 1970, 00:00:00
+	 * (Epoch time).
+	 *
+	 * @param DateTime Date/time object you want converted to
+	 * Epoch time.(Required)
+	 *
+	 * @return Returns a numeric value.
+	 * @author Rob Brooks-Bilson (rbils@amkor.com)
+	 * @version 1, June 21, 2002
+	*/
+	public any function GetEpochTimeFromLocal() {
+		local.datetime = 0;
+
+		if ( arrayLen(arguments) == 0)
+		{
+			local.datetime = Now();
+		} else {
+			local.datetime = arguments[1];
+		}
+
+		return
+			DateDiff(
+				"s"
+				,DateConvert("utc2Local", "January 1 1970 00:00")
+				,datetime);
 	}
 }
