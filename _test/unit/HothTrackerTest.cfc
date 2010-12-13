@@ -59,7 +59,7 @@ component extends="mxunit.framework.TestCase"  {
 		try {
 			coldbox = undefinedVariable;
 		} catch (any exception) {
-			local.ExceptionBean = new coldbox.system.beans.ExceptionBean(errorStruct=exception);
+			local.ExceptionBean = new coldbox.system.web.context.ExceptionBean(errorStruct=exception);
 			local.hashOfStack = hash(lcase(exception.stacktrace),'SHA');
 			local.HothOk = variables.HothTracker.track(exception);
 		}
