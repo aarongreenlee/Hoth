@@ -1,4 +1,20 @@
-/** Unit Test Config for Hoth */
+/**
+	Aaron Greenlee
+	http://aarongreenlee.com/
+
+	This work is licensed under a Creative Commons Attribution-Share-Alike 3.0
+	Unported License.
+
+	// Original Info -----------------------------------------------------------
+	Author			: Aaron Greenlee
+	Created      	: 10/01/2010
+
+	Unit Test Config for Hoth
+
+	// Modifications :---------------------------------------------------------
+	Modified		: 	12/13/2010 9:52:41 AM by Aaron Greenlee.
+    				-	Now supporting ColdBox 3.0 RC1
+*/
 component
 	implements='Hoth.object.iHothConfig'
 	extends='Hoth.object.CoreConfig'

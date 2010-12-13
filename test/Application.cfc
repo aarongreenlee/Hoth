@@ -9,11 +9,7 @@
 	Author			: Aaron Greenlee
 	Created      	: 10/01/2010
 
-	Interface for a Hoth Config Object.
-
 */
-interface  {
-	public Hoth.object.iHothConfig function init ();
-	public string function getLogPathExpanded();
-	public string function getPath (name);
-}
+<cfcomponent output="false">
+	<cfset this.name = "Hoth Tests_" & hash(getCurrentTemplatePath())>
+</cfcomponent>

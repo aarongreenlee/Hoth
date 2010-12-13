@@ -17,20 +17,16 @@ through log files that repeat messages over, and over.
 Author: Aaron Greenlee (http://aarongreenlee.com)
 Copyright 2010 Aaron Greenlee
 
----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 Hoth License
 
 This file is part of Hoth.
 
-Hoth is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This work is licensed under a Creative Commons Attribution-Share-Alike 3.0
+Unported License.
 
-Hoth is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+--------------------------------------------------------------------------------
+Hoth has the following third-party dependencies:
 
-You should have received a copy of the GNU General Public License
-along with Hoth.  If not, see <http://www.gnu.org/licenses/>.
+MockBox (http://coldbox.org)
+MXUnit (http://mxunit.org)

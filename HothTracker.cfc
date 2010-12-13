@@ -1,6 +1,24 @@
-/** Track errors within an application. */
+/**
+	Aaron Greenlee
+	http://aarongreenlee.com/
+
+	This work is licensed under a Creative Commons Attribution-Share-Alike 3.0
+	Unported License.
+
+	// Original Info -----------------------------------------------------------
+	Author			: Aaron Greenlee
+	Created      	: 10/01/2010
+
+	HothTracker is responsible for accepting a exception, tracking the frequency
+	of the exception and alerting developers for new, unique exceptions.
+
+	// Modifications :---------------------------------------------------------
+	Modified		: 	12/13/2010 9:52:41 AM by Aaron Greenlee.
+    				-	Now supporting ColdBox 3.0 RC1
+*/
 component
 name='HothTracker'
+accessors=false
 {
 
 	public Hoth.HothTracker function init (HothConfig) {
