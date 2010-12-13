@@ -18,7 +18,6 @@ accessors = true
 	property name='applications' type='array';
 
 	// The filename that holds application knowledge.
-	VARIABLES.APPFILE = expandPath('/hoth/db/applications.hoth');
 	VARIABLES.APP_LOCK_KEY = 'HothApplicationDBFileLock';
 
 	/** Constructor.
@@ -76,9 +75,9 @@ accessors = true
 			);
 
 			// Save the contents of the entire array, replacing the entire file
-			local.path = arguments.HothConfig.GlobalHothSettings.globalDatabase;
+			local.path = arguments.HothConfig.getGlobalDatabasePath();
 			fileWrite(
-				 VARIABLES.APPFILE
+				 expandPath(arguments.HothConfig.getGlobalDatabasePath() & 'applications.hoth')
 				,serializeJSON(local.knownApplications)
 				,'UTF-8'
 			);
@@ -93,20 +92,21 @@ accessors = true
 	private array function loadApplicationsFromDisk (
 		required HothConfig
 	){
-		local.path = arguments.HothConfig.GlobalHothSettings.globalDatabase;
+		local.path = arguments.HothConfig.getGlobalDatabasePath();
+		local.appfile = expandPath(arguments.HothConfig.getGlobalDatabasePath() & 'applications.hoth');
 
 		// Return an empty array if the appFile does not exist.
-		if (!fileExists( VARIABLES.APPFILE ) )
+		if (!fileExists( local.appfile ) )
 		{
 			return [];
 		}
 
-		local.applicationsFound = fileRead(VARIABLES.APPFILE);
+		local.applicationsFound = fileRead( local.appfile );
 
 		// Delete the database if the file is invalid.
 		if (!isJSON(local.applicationsFound))
 		{
-			fileDelete( VARIABLES.APPFILE );
+			fileDelete( local.appfile );
 			return [];
 		}
 

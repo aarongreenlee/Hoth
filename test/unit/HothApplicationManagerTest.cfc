@@ -16,7 +16,6 @@
 */
 
 /** Unit test for Hoth.HothTracker */
-//import coldbox.system.testing.*;
 component extends="mxunit.framework.TestCase"
 {
 
@@ -26,11 +25,9 @@ component extends="mxunit.framework.TestCase"
 	/** Constructor */
 	public void function setUp()
 	{
-
-		//MockBox = new MockBox();
-
 		// Load our test config
 		HothConfig = new Hoth.test.HothConfig();
+		HothConfig.setGlobalDatabasePath(variables.testDB);
 
 		// Change the global settings for the test
 		HothConfig.GlobalHothSettings.globalDatabase = variables.testDB;
@@ -38,15 +35,6 @@ component extends="mxunit.framework.TestCase"
 		// Create our SUT
 		HothApplicationManager =
 			new Hoth.object.HothApplicationManager(HothConfig);
-
-		// Inject our test db path into the SUT to overwrite the production
-		// path to the application file.
-		injectProperty(
-			 HothApplicationManager
-			,'APPFILE'
-			,variables.appFile
-			,'variables'
-		);
 
 		// Write our test application data
 		local.applicationToSave =

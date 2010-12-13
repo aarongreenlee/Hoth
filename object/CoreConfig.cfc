@@ -20,20 +20,13 @@
 
 */
 component
+accessors='true'
 {
-
-	this.GlobalHothSettings =
-	{
-		// Default location to store our memory of all the applications
-		// Hoth has encountered. This can be eaisly overwritten with your own
-		// Config object. It is a good idea, to ensure the setting is shared by all
-		// applications on a server/cluster/farm.
-		globalDatabase = '/hoth/db/'
-	};
 
 	/** Construct a configuration object for Hoth. */
 	public Hoth.object.iHothConfig function init ()
 	{
+
 		local.md = getMetadata(this);
 		local.n = arrayLen(local.md.properties);
 		for (local.i=1; local.i <= local.n; local.i++) {
@@ -41,6 +34,15 @@ component
 			local.fn(local.md.properties[local.i]['default']);
 		}
 		return this;
+	}
+
+	public void function setGlobalDatabasePath(required string path) {
+		variables.GlobalDatabasePath = arguments.path;
+	}
+	public string function getGlobalDatabasePath() {
+		return (structKeyExists(variables, 'GlobalDatabasePath'))
+		? variables.GlobalDatabasePath
+		: '/hoth/db/';
 	}
 
 	/** Expands a path **/
