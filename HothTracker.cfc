@@ -108,7 +108,7 @@ accessors=false
 					fileWrite(local.incidentsFile ,now() & '#chr(13)#','UTF-8');
 				} else {
 					local.file = fileOpen(local.incidentsFile,'append','utf-8');
-					fileWriteLine(local.file, now());
+					fileWriteLine(local.file, variables.Config.getEpochTimeFromLocal() );
 					fileClose(local.file);
 				}
 			}
