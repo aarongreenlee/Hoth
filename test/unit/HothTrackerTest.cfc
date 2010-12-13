@@ -26,7 +26,7 @@ component extends="mxunit.framework.TestCase"  {
 		MockBox = new MockBox();
 
 		// Load our test config
-		HothConfig = new Hoth._test.HothConfig();
+		HothConfig = new Hoth.test.HothConfig();
 
 		variables.paths =
 		{

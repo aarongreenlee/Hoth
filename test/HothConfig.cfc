@@ -29,7 +29,7 @@ component
 
 	/** Where would you like Hoth to save exception data?
 		This folder should be empty. */
-	property name='logPath' 				default='/Hoth/_test/logs';
+	property name='logPath' 				default='/Hoth/test/logs';
 
 	// ------------------------------------------------------------------------------
 	/** Would you like new exceptions to be emailed to you? */
