@@ -24,6 +24,10 @@ component
 
 	this.GlobalHothSettings =
 	{
+		// Default location to store our memory of all the applications
+		// Hoth has encountered. This can be eaisly overwritten with your own
+		// Config object. It is a good idea, to ensure the setting is shared by all
+		// applications on a server/cluster/farm.
 		globalDatabase = '/hoth/db/'
 	};
 
