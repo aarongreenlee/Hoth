@@ -73,7 +73,6 @@ component
 	 *
 	 * @return Returns a numeric value.
 	 * @author Rob Brooks-Bilson (rbils@amkor.com)
-	 * @version 1, June 21, 2002
 	*/
 	public any function GetEpochTimeFromLocal() {
 		local.datetime = 0;

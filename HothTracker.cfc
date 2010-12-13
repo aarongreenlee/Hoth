@@ -40,6 +40,19 @@ accessors=false
 
 		verifyDirectoryStructure();
 
+		try {
+		// For the life of this HothTracker, keep the ApplicationManager.
+		variables.HothApplicationManager = new Hoth.object.HothApplicationManager(HothConfig);
+		// Because the entire application db file is locked, we only want to
+		// learn about this application when the HothTracker is created. The
+		// actual amount of work done within the manager is small, but, it is
+		// does block all other processes for all other Hoth instances, so, we
+		// want to reduce calls to it to this constructor.
+		variables.HothApplicationManager.learnApplication(arguments.HothConfig);
+		} catch (any e) {
+			writeDump(e);abort;
+		}
+
 		return this;
 	}
 
@@ -136,6 +149,7 @@ accessors=false
 			}
 		// ------------------------------------------------------------------------------
 		} catch (any e) {
+			writeDump(e);abort;
 			return false;
 		}
 		// ------------------------------------------------------------------------------
