@@ -18,6 +18,12 @@ Author: Aaron Greenlee (http://aarongreenlee.com)
 Copyright 2010 Aaron Greenlee
 
 --------------------------------------------------------------------------------
+
+Requirements
+
+Adobe ColdFusion 9.01 with HotFix 1 Applied
+
+--------------------------------------------------------------------------------
 Hoth License
 
 This file is part of Hoth.
