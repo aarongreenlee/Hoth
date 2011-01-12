@@ -105,10 +105,10 @@ accessors=false
 
 				// Create an incident if the file does not exist
 				if (!fileExists(local.incidentsFile)) {
-					fileWrite(local.incidentsFile ,timeFormat(now()) & '#chr(13)#','UTF-8');
+					fileWrite(local.incidentsFile ,now() & '#chr(13)#','UTF-8');
 				} else {
 					local.file = fileOpen(local.incidentsFile,'append','utf-8');
-					fileWriteLine(local.file, timeFormat(now(),'full') );
+					fileWriteLine(local.file, now() );
 					fileClose(local.file);
 				}
 			}
