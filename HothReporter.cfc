@@ -107,7 +107,6 @@ accessors=false
 		local.report = {};
 		for(local.exception in local.exceptions)
 		{
-
 			local.instance = {};
 			local.instance.filename =
 			listLast(local.exception,'\');
@@ -125,9 +124,7 @@ accessors=false
 					fileRead(variables.paths.Incidents & '\' & local.instance.filename);
 				}
 
-				local.instance.incidentDetail = listToArray(local.instances, chr(10));
-
-				local.instance.incidentCount = arrayLen(local.instance.incidentDetail);
+				local.instance.incidentCount = listLen(local.instances,chr(10));
 
 				// Save our report
 				local.report[local.instance.filename] = local.instance;
