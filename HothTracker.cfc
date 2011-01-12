@@ -76,6 +76,7 @@ accessors=false
 				,context 	= structKeyExists(local.ExceptionStructure,'tagcontext') ? local.ExceptionStructure.tagcontext : '_no_tagcontext'
 				,format 	= structKeyExists(local.ExceptionStructure,'format') ? local.ExceptionStructure.tagcontext : '_no_format'
 				,url		= CGI.HTTP_HOST & CGI.path_info
+				,client		= CGI.HTTP_USER_AGENT
 			};
 
 			// Generate JSON for hashing
