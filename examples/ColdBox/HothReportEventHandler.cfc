@@ -4,9 +4,6 @@
 
 	addRoute(pattern		= 'hoth/:action?'
 			,handler		= 'HothReportEventHandler');
-
-	Optional, you may want to add a condition to only allow this to be viewed
-	while in debugmode.
 */
 
 component {
@@ -15,6 +12,13 @@ component {
 	{
 		var rc = Event.getCollection();
 		var prc = Event.getCollection(private=true);
+
+		// Only allow access to this report if we are
+		// in debug mode.
+		if (!getDebugMode())
+		{
+			setNextEvent('home');
+		}
 
 		// This line assumes you have your HothConfig within the config
 		// directory of your ColdBox application.
