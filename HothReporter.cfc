@@ -114,8 +114,8 @@ accessors=false
 
 			if (left(local.instance.filename, 1) != '_')
 			{
-				local.instance.exceptionDetail =
-				fileRead (local.exception);
+				//local.instance.exceptionDetail =
+				//fileRead (local.exception);
 
 				if (!fileExists(variables.paths.Incidents & '\' & local.instance.filename))
 				{
