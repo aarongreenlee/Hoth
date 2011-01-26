@@ -50,9 +50,8 @@ accessors=false
 		// want to reduce calls to it to this constructor.
 		variables.HothApplicationManager.learnApplication(arguments.HothConfig);
 		} catch (any e) {
-			writeDump(e);abort;
+			//writeDump(e);abort;
 		}
-
 		return this;
 	}
 
@@ -109,7 +108,7 @@ accessors=false
 					fileWrite(local.incidentsFile ,now() & '#chr(13)#','UTF-8');
 				} else {
 					local.file = fileOpen(local.incidentsFile,'append','utf-8');
-					fileWriteLine(local.file, now() );
+					fileWriteLine(local.file, now() & '|' & local.e.url );
 					fileClose(local.file);
 				}
 			}
