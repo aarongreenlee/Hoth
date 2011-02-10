@@ -94,7 +94,7 @@ accessors=false
 
 	/** Return the report's view **/
 	public string function getReportView () {
-		local.view = fileRead(expandPath('/hoth') & '/views/report.html');
+		local.view = fileRead(expandPath('/Hoth') & '/views/report.html');
 		return local.view;
 	}
 

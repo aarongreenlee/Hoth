@@ -19,7 +19,7 @@
 component extends="mxunit.framework.TestCase"
 {
 
-	variables.testDB = '/hoth/test/db/';
+	variables.testDB = '/Hoth/test/db/';
 	variables.appFile = expandPath(variables.testDB & 'applications.hoth');
 
 	/** Constructor */
@@ -40,7 +40,7 @@ component extends="mxunit.framework.TestCase"
 		local.applicationToSave =
 		[{
 			 'applicationName' = 'HothUnitTestFake'
-			,'logPath' = '/hoth/test/logs_not_real'
+			,'logPath' = '/Hoth/test/logs_not_real'
 			,'created' = 0
 		}];
 		fileWrite(

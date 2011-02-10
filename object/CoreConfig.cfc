@@ -42,7 +42,7 @@ accessors='true'
 	public string function getGlobalDatabasePath() {
 		return (structKeyExists(variables, 'GlobalDatabasePath'))
 		? variables.GlobalDatabasePath
-		: '/hoth/db/';
+		: '/Hoth/db/';
 	}
 
 	/** Expands a path **/

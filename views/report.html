@@ -117,7 +117,7 @@ margin-bottom: 5px;
 		$().ready(function() {
 
 			$.ajax({
-				url: '/hoth/report',
+				url: '/Hoth/report',
 				success: function(response){
 					populatePage(response);
 				}
@@ -180,13 +180,13 @@ margin-bottom: 5px;
 		function formatException(id) {			
 			$.ajax(
 				{
-					 url: '/hoth/report/exception/'+id
+					 url: '/Hoth/report/exception/'+id
 					,async : false
 					,success: function (ex)
 					{
 						var bar = '<div id="exceptionMenu">\
-						<a href="/hoth/report/exception/' + id + '">View Raw JSON</a> | \
-						<a href="/hoth/delete/exception/' +
+						<a href="/Hoth/report/exception/' + id + '">View Raw JSON</a> | \
+						<a href="/Hoth/delete/exception/' +
 						id +
 						'">Delete Reports</a></div>';
 						

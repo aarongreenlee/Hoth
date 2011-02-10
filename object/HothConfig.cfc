@@ -41,4 +41,10 @@ component
 	/** Would you like the raw JSON attached to the e-mail? */
 	property name='EmailNewExceptionsFile' 	default='false';
 	// ------------------------------------------------------------------------------
+	
+	
+	public Hoth.object.HothConfig function init()
+	{
+		return this;
+	}
 }
