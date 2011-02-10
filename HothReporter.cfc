@@ -109,19 +109,19 @@ accessors=false
 		{
 			local.instance = {};
 			local.instance.filename =
-			listLast(local.exception,'\');
+			listLast(local.exception,'\/');
 
 			if (left(local.instance.filename, 1) != '_')
 			{
 				//local.instance.exceptionDetail =
 				//fileRead (local.exception);
 
-				if (!fileExists(variables.paths.Incidents & '\' & local.instance.filename))
+				if (!fileExists(variables.paths.Incidents & '/' & local.instance.filename))
 				{
 					local.instances = '';
 				} else {
 					local.instances =
-					fileRead(variables.paths.Incidents & '\' & local.instance.filename);
+					fileRead(variables.paths.Incidents & '/' & local.instance.filename);
 				}
 
 				local.instance.incidentCount = listLen(local.instances,chr(10));
