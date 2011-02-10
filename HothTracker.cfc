@@ -95,8 +95,8 @@ accessors=false
 			// Lock is unique to the exception.
 			lock name=local.index.key timeout=variables.Config.getTimeToLock() type="exclusive" {
 				local.filename = local.index.key & '.log';
-				local.exceptionFile = variables.paths.Exceptions & '\' & local.filename;
-				local.incidentsFile = variables.paths.Incidents & '\' & local.filename;
+				local.exceptionFile = variables.paths.Exceptions & '/' & local.filename;
+				local.incidentsFile = variables.paths.Incidents & '/' & local.filename;
 
 				local.exceptionIsKnown = fileExists(local.exceptionFile);
 
@@ -237,11 +237,11 @@ accessors=false
 		lock name=VARIABLES._NAME timeout=variables.Config.getTimeToLock() type="exclusive" {
 			if (!directoryExists(variables.paths.Exceptions)) {
 				directoryCreate(variables.paths.Exceptions);
-				fileWrite(variables.paths.Exceptions & '\_readme.txt','Hoth: The files within this directory contain the complete details for each unique exception.');
+				fileWrite(variables.paths.Exceptions & '/_readme.txt','Hoth: The files within this directory contain the complete details for each unique exception.');
 			}
 			if (!directoryExists(variables.paths.Incidents)) {
 				directoryCreate(variables.paths.Incidents);
-				fileWrite(variables.paths.Exceptions & '\_readme.txt','Hoth: The files within this directory contain the details about the volume of errors for each unique exception.');
+				fileWrite(variables.paths.Exceptions & '/_readme.txt','Hoth: The files within this directory contain the details about the volume of errors for each unique exception.');
 			}
 		}
 

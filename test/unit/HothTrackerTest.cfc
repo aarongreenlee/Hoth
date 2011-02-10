@@ -67,8 +67,8 @@ component extends="mxunit.framework.TestCase"  {
 
 		local.file = local.hashOfStack & '.log';
 		// Verify an exception was saved.
-		assert( fileExists(variables.paths.exceptions & '\' & local.file), 'Expected #local.hashOfStack#.log exception file.');
-		assert( fileExists(variables.paths.incidents & '\' & local.file), 'Expected #local.hashOfStack#.log incident file.');
+		assert( fileExists(variables.paths.exceptions & '/' & local.file), 'Expected #local.hashOfStack#.log exception file.');
+		assert( fileExists(variables.paths.incidents & '/' & local.file), 'Expected #local.hashOfStack#.log incident file.');
 
 		return;
 	}
@@ -83,8 +83,8 @@ component extends="mxunit.framework.TestCase"  {
 		}
 		local.file = local.hashOfStack & '.log';
 		// Verify an exception was saved.
-		assert( fileExists(variables.paths.exceptions & '\' & local.file), 'Expected #local.hashOfStack#.log exception file.');
-		assert( fileExists(variables.paths.incidents & '\' & local.file), 'Expected #local.hashOfStack#.log incident file.');
+		assert( fileExists(variables.paths.exceptions & '/' & local.file), 'Expected #local.hashOfStack#.log exception file.');
+		assert( fileExists(variables.paths.incidents & '/' & local.file), 'Expected #local.hashOfStack#.log incident file.');
 
 		return;
 	}
@@ -103,10 +103,10 @@ component extends="mxunit.framework.TestCase"  {
 		}
 		local.file = local.hashOfStack & '.log';
 		// Verify an exception was saved.
-		assert( fileExists(variables.paths.exceptions & '\' & local.file), 'Expected #local.hashOfStack#.log exception file.');
+		assert( fileExists(variables.paths.exceptions & '/' & local.file), 'Expected #local.hashOfStack#.log exception file.');
 
 		// Verify our incident file was saved
-		local.incidentFile = variables.paths.incidents & '\' & local.file;
+		local.incidentFile = variables.paths.incidents & '/' & local.file;
 		assert( fileExists(local.incidentFile), 'Expected #local.file# incident file.');
 
 		// Verify our incident file has five incidents (one per line)

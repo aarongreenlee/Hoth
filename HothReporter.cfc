@@ -49,7 +49,7 @@ accessors=false
 		{
 			return generateExceptionIndex();
 		} else {
-			local.filepath = variables.paths.Exceptions & '\' & arguments.exception;
+			local.filepath = variables.paths.Exceptions & '/' & arguments.exception;
 
 			local.exception = (fileExists(local.filepath))
 			? fileRead(local.filepath)
@@ -69,8 +69,8 @@ accessors=false
 		{
 			// hahah - not yet.
 		} else {
-			local.exceptionPath = variables.paths.Exceptions & '\' & arguments.exception;
-			local.incidentPath = variables.paths.Incidents & '\' & arguments.exception;
+			local.exceptionPath = variables.paths.Exceptions & '/' & arguments.exception;
+			local.incidentPath = variables.paths.Incidents & '/' & arguments.exception;
 
 			local.response = [];
 
