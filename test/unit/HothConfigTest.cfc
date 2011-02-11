@@ -22,7 +22,6 @@ component extends="mxunit.framework.TestCase"
 	/** Constructor */
 	public void function setUp()
 	{
-
 		// Load our test config
 		HothConfig = new Hoth.test.HothConfig();
 
@@ -30,28 +29,13 @@ component extends="mxunit.framework.TestCase"
 	}
 
 	// -------------------------------------------------------------------------
-	public void function ConfirmGlobalVariables() {
-
-		// All keys expected within global settings
-		local.expectedValues =
-		[
-			'globalDatabase'
-		];
-
+	public void function Confirm_Default_Storage() {
 		// Confirm the global settings themselves
-		assert(
-			structKeyExists(HothConfig, 'GlobalHothSettings')
-			,'GlobalHothSettings did not exist.'
+		assertEquals(
+			 '/Hoth/db/'
+			,HothConfig.getGlobalDatabasePath()
+			,'Has the default location to store application knowledge changed?'
 		);
-
-		// Confirm each key
-		for(index in local.expectedValues)
-		{
-			assert(
-				structKeyExists(HothConfig['GlobalHothSettings'], index)
-				,'#index# missing from GlobalHothSettings.'
-			);
-		}
 
 		return;
 	}
