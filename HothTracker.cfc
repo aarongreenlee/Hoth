@@ -178,10 +178,10 @@ accessors=false
 
 		if (local.exceptionType == 'Native')
 		{
-			local.result.detail 		= arguments.Exception.detail;
-			local.result.message 		= arguments.Exception.message;
-			local.result.stacktrace 	= arguments.Exception.stacktrace;
-			local.result.tagcontext 	= arguments.Exception.tagContext;
+			local.result.detail 		= (structKeyExists(arguments.Exception, 'detail')) ? arguments.Exception.detail : 'undefined';
+			local.result.message 		= (structKeyExists(arguments.Exception, 'message')) ? arguments.Exception.message : 'undefined';
+			local.result.stacktrace 	= (structKeyExists(arguments.Exception, 'stacktrace')) ? arguments.Exception.stacktrace : 'undefined';
+			local.result.tagcontext 	= (structKeyExists(arguments.Exception, 'tagContext')) ? arguments.Exception.tagContext : 'undefined';
 			local.result.validException = true;
 			local.result.format 		= 'Native';
 			return local.result;
