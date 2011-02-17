@@ -17,6 +17,7 @@
 component
 name='HothReporter'
 accessors=false
+output="false"
 {
 	public Hoth.HothReporter function init (HothConfig)
 	{
@@ -35,7 +36,7 @@ accessors=false
 		variables.paths.Report 		= variables.Config.getPath('exceptionReport');			// The actual report
 		variables.paths.Activity 	= variables.Config.getPath('exceptionReportActivity');	// Track when we save things. Helps understand volume.
 		//variables.paths.Index 	= variables.Config.getPath('exceptionIndex');			// Tracks the exception keys to prevent duplication
-
+		
 		return this;
 	}
 
@@ -44,7 +45,6 @@ accessors=false
 	**/
 	public struct function report (required string exception)
 	{
-
 		if (arguments.exception=='all')
 		{
 			return generateExceptionIndex();
@@ -105,16 +105,16 @@ accessors=false
 		local.incidents = directoryList (variables.paths.Exceptions,false);
 
 		local.report = {};
-		for(local.exception in local.exceptions)
-		{
+		for (i=1;i LTE ArrayLen(local.exceptions);i=i+1) {
+		
 			local.instance = {};
 			local.instance.filename =
-			listLast(local.exception,'\/');
+			listLast(local.exceptions[i],'\/');
 
 			if (left(local.instance.filename, 1) != '_')
 			{
 				//local.instance.exceptionDetail =
-				//fileRead (local.exception);
+				//fileRead (local.exceptions[i]);
 
 				if (!fileExists(variables.paths.Incidents & '/' & local.instance.filename))
 				{

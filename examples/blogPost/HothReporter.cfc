@@ -3,10 +3,11 @@
 // this through obscurity. But, I prefer the approach shown in the ColdBox
 // example. That is what I use. I have not tried this code :(
 
-component {
+component 
+{
 	/** Loads the Web UI (HTML) **/
 	remote function index () returnformat='plain' {
-		local.HothReport = new Hoth.HothReporter( new atv.config.HothConfig() );
+		local.HothReport = new Hoth.HothReporter( new config.HothConfig() );
 		return local.HothReport.getReportView();
 	}
 
@@ -20,7 +21,7 @@ component {
 		? arguments.exception
 		: 'all');
 
-		local.HothReport = new Hoth.HothReporter( new atv.config.HothConfig() );
+		local.HothReport = new Hoth.HothReporter( new config.HothConfig() );
 		return local.HothReport.report(local.report);
 	}
 
@@ -32,7 +33,7 @@ component {
 			arguments.exception = 'all';
 		}
 
-		local.HothReport = new Hoth.HothReporter( new atv.config.HothConfig() );
+		local.HothReport = new Hoth.HothReporter( new config.HothConfig() );
 
 		// Delete!
 		return local.HothReporter.delete(arguments.exception);
