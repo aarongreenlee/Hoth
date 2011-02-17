@@ -1,0 +1,80 @@
+/** 
+ * Copyright Aaron Greenlee
+ * 
+ * <h4>Description</h4>
+ * A ColdBox event handler to allow Hoth reporting.
+ * 
+ * Created
+ * 2/9/2011 11:27:25 AM
+ * 
+ * @author Aaron Greenlee
+ * @version 1
+ * @see N/A
+ **/
+component {
+	// Executed before any other method within this CFC
+	public void function preHandler(required Event)
+	{
+		var rc = Event.getCollection();
+		var prc = Event.getCollection(private=true);
+
+		// Only allow access for debug mode. This 
+		// ensures that you have to know the debugpassword
+		// to access Hoth
+		if (!getDebugMode())
+		{
+			redirectToNewEvent(event='home',eventObject=Event);
+		}
+
+		// If we get this far, we have access to view Hoth.
+		// Create a new Hoth Report instance and place it in the 
+		// prc struct.
+		prc.HothReporter = new Hoth.HothReporter( new config.HothConfig() );
+	}
+
+	public void function index (required Event) {
+		var rc = Event.getCollection();
+		var prc = Event.getCollection(private=true);
+
+		// Return Hoth's inital view 
+		Event.renderData(type='html',data=prc.HothReporter.getReportView());
+
+		return;
+	}
+	
+	public void function report (required Event) {
+		var rc = Event.getCollection();
+		var prc = Event.getCollection(private=true);
+
+		// Return a specific report. If no exception is requested by
+		// hash id then all of the hashes are returned. This 
+		// acts like an index so we can click on specific errors.
+		local.report = (structKeyExists(rc, 'exception')
+		? rc.exception
+		: 'all');
+
+		// Return the JSON
+		Event.renderData(type='json',data=prc.HothReporter.report(local.report));
+
+		return;
+	}
+	
+	public void function delete (required Event) {
+		var rc = Event.getCollection();
+		var prc = Event.getCollection(private=true);
+
+		// We can delete all exceptions at once!
+		if (!structKeyExists(rc, 'exception'))
+		{
+			rc.exception = 'all';
+		}
+
+		// Or, we can delete a specific exception using the hash id
+		local.result = prc.HothReporter.delete(rc.exception);
+
+		// Return the results as JSON.
+		Event.renderData(type='json',data=local.result);
+	
+		return;
+	}
+}

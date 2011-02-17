@@ -1,0 +1,13 @@
+<!--- ColdFusion Application.cfc OnError Method --->
+<cffunction name="OnError" returnType="void" output="true">
+	<cfargument name="Except" required=true />
+	<cfargument type="String" name="EventName" required=true/>
+	
+	<!--- Track this exception with Hoth --->
+	<cfset local.Hoth = new Hoth.HothTracker(new config.HothConfig())/>
+	<cfset local.Hoth.track(arguments.Except) />
+	
+	<!--- Anything you need here ... --->
+		
+	<cfreturn />
+</cffunction>

@@ -1,0 +1,24 @@
+<!--- handlers/Main.cfc --->
+<cffunction name="onException" returntype="void" output="false">
+	<cfargument name="event" required="true">
+	<cfscript>
+		local.HothTracker = (structKeyExists(application, 'HothTracker'))
+			? application.HothTracker
+			: new Hoth.HothTracker( new atv.config.HothConfig() );
+
+		try {
+			//Grab Exception From request collection, placed by ColdBox
+			local.ExceptionBean = Event.getValue("ExceptionBean");
+		} catch (any e) {
+			// Record that the exception bean was not found!
+			// This should also provide the context of the original error
+			// however, the error details will be different. This is important
+			// in the event ColdBox has an issue capturing the error. 
+			local.HothTracker.track(e);
+			
+			return;
+		}
+
+		local.HothTracker.track(local.ExceptionBean);
+	</cfscript>
+</cffunction>

@@ -1,0 +1,33 @@
+<cffunction name="onRequestStart" returnType="boolean" output="true">
+	<cfargument name="targetPage" type="string" required="true" />
+	<cfscript>
+		// Place Hoth into Application Memory.
+		if (!structKeyExists(application, 'HothTracker')
+		{
+			application.HothTracker =
+				new Hoth.HothTracker( new config.HothConfig() );
+		}
+
+		// anything you need here...
+
+		return true;
+	</cfscript>
+</cffunction>
+
+<cffunction name="OnError" returnType="void" output="true">
+    <cfargument name="Except" required=true />
+    <cfargument type="String" name="EventName" required=true/>
+	<cfscript>
+		// Create an instance of Hoth if one does not exist in the
+		// application scope. Hoth should exist in the Application Scope
+		// but, if something went wrong there we are ensured tracking.
+		local.HothTracker = (structKeyExists(application, 'HothTracker'))
+			? application.HothTracker
+			: new Hoth.HothTracker( new config.HothConfig() );
+
+		local.HothTracker.track(Except);
+		
+		// anything you need here...
+		
+	</cfscript>
+</cffunction>

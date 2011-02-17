@@ -1,0 +1,20 @@
+<cftry>
+	<cfinvoke webservice="#webservice#" method="createAccount" returnvariable="local.result">
+		<cfinvokeargument name="email" value="#User.getEmail()#">
+		<cfinvokeargument name="password" value="#User.getPassword()#">
+	</cfinvoke>
+	<cfcatch type="any">
+		
+		<cfset gracefulErrorCapture(
+			 arguments.User
+			,cfcatch.faultString
+		) />
+		
+		<cfcatch type="any">
+			<!--- Record this event with Hoth --->
+			<cfif structKeyExists(application, 'HothTracker')>
+				<cfset application.HothTracker.track(cfcatch) />
+			</cfif>
+		</cfcatch>
+	</cfcatch>
+</cftry>
