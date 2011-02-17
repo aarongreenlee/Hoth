@@ -117,6 +117,8 @@ margin-bottom: 5px;
 
 			$.ajax({
 				url: '/Hoth/Report.cfc?method=report',
+				cache: false,
+				dataType: 'json',
 				success: function(response){
 					populatePage(response);
 				}
@@ -124,19 +126,16 @@ margin-bottom: 5px;
 
 			var populatePage = function (ServerExceptions) {
 				Hoth.Exceptions = ServerExceptions;
-				alert(Hoth.Exceptions);
+				
 				/** Prepare **/
 				Hoth.ExceptionsByVolume = [];
 				// Parse our exceptions sent by the server
 				for (var e in Hoth.Exceptions)
 				{
-					alert(e);
 					var ex = Hoth.Exceptions[e];
 					// Seperate JavaScript information from the data provided by
 					// the server
-					alert(ex);
 					ex.js = {};
-					alert(ex.js);
 					ex.js.short = e.substring(0,8).toUpperCase();
 					ex.js.instances = [];
 
@@ -166,8 +165,8 @@ margin-bottom: 5px;
 				for (var i in Hoth.ExceptionsByVolume)
 				{
 					var ex = Hoth.ExceptionsByVolume[i];
-					exLinksHTML += '<li><a href="#' + ex.filename + '" data-id="' + ex.filename + '">' +
-					ex.js.short + '</a> (' + ex.incidentcount + ')</li>';
+					exLinksHTML += '<li><a href="#' + ex.FILENAME + '" data-id="' + ex.FILENAME + '">' +
+					ex.js.short + '</a> (' + ex.INCIDENTCOUNT + ')</li>';
 					$('#listing ul').html(exLinksHTML);
 				}
 			}
@@ -178,18 +177,38 @@ margin-bottom: 5px;
 				formatException(id);
 			});	
 
+		
+					
 		function formatException(id) {			
 			$.ajax(
 				{
 					 url: '/Hoth/Report.cfc?method=report&exception='+id
 					,async : false
+					,cache: false
+					,dataType: "json"
 					,success: function (ex)
 					{
 						var bar = '<div id="exceptionMenu">\
-						<a href="/Hoth/report/exception/' + id + '">View Raw JSON</a> | \
-						<a href="/Hoth/delete/exception/' +
+						<a href="/Hoth/Report.cfc?method=report&exception=' + id + '">View Raw JSON</a> | \
+						<a href="/Hoth/Report.cfc?method=delete&exception=' +
 						id +
 						'">Delete Reports</a></div>';
+						
+						if (typeof(ex.client) == 'undefined') {
+							ex.message = ex.CLIENT;
+						}
+						if (typeof(ex.message) == 'undefined') {
+							ex.message = ex.MESSAGE;
+						}
+						if (typeof(ex.detail) == 'undefined') {
+							ex.detail = ex.DETAIL;
+						}
+						if (typeof(ex.context) == 'undefined') {
+							ex.context = ex.CONTEXT;
+						}
+						if (typeof(ex.stack) == 'undefined') {
+							ex.stack = ex.STACK;
+						}
 						
 						var detail = '<dl>'
 						+ '<dt>URL</dt><dd>' + ex.url + '</dd>'
@@ -198,7 +217,6 @@ margin-bottom: 5px;
 						+ '<dt>Detail</dt><dd>' + ex.detail + '</dd>'
 						+ '<dt>Context</dt><dd>' + iterateExceptionContext(ex.context) + '</dd>'
 						+ '<dt>Stack</dt><dd>' + ex.stack + '</dd>';
-						
 						
 						$('#details').html(bar + detail);
 					}
