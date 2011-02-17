@@ -2,7 +2,7 @@
 	<cfargument name="targetPage" type="string" required="true" />
 	<cfscript>
 		// Place Hoth into Application Memory.
-		if (!structKeyExists(application, 'HothTracker')
+		if (!structKeyExists(application, 'HothTracker'))
 		{
 			application.HothTracker =
 				new Hoth.HothTracker( new config.HothConfig() );
