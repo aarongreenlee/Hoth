@@ -1,4 +1,4 @@
-/**
+<!---
 	Aaron Greenlee
 	http://aarongreenlee.com/
 
@@ -9,7 +9,7 @@
 	Author			: Aaron Greenlee
 	Created      	: 10/01/2010
 
-*/
+--->
 <cfcomponent output="false">
 	<cfset this.name = "Hoth Tests_" & hash(getCurrentTemplatePath())>
 </cfcomponent>

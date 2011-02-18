@@ -33,9 +33,13 @@ post here:
 http://aarongreenlee.com/share/hoth-coldfusion-errors-tracking-reporting
 
 
-
-Author: Aaron Greenlee (http://aarongreenlee.com)
-Copyright 2011 Aaron Greenlee
+Authors:
+-------
+Aaron Greenlee - http://aarongreenlee.com
+Sean Coyne - http://www.n42designs.com
+Dan Skaggs - http://TNTechnoHermit.com
+Mike Henk - http://www.henke.ws
+James Brown - http://coldfusioning.com
 
 --------------------------------------------------------------------------------
 
@@ -52,6 +56,8 @@ This file is part of Hoth.
 
 This work is licensed under a Creative Commons Attribution-Share-Alike 3.0
 Unported License.
+
+Hoth is Copyright 2011 Aaron Greenlee
 
 --------------------------------------------------------------------------------
 Hoth has the following third-party dependencies or code included:
