@@ -144,15 +144,6 @@
 				ex.js.short = e.substring(0,8).toUpperCase();
 				ex.js.instances = [];
 
-				// Create dates from the server EPOCH for our error report
-				for (var d in  ex.incidentdetail)
-				{
-					try {
-						ex.js.instances.push(new Date(d));
-					} catch (e) {
-						// silent.
-					}
-				}
 				// Sort the dates in descending order
 				ex.js.instances.sort();
 				ex.js.instances.reverse();
@@ -163,9 +154,7 @@
 				Hoth.ExceptionsByVolume.push(ex);
 			}
 			// Sort all of our exceptions by last date observed
-			console.log(Hoth.ExceptionsByVolume);
 			Hoth.ExceptionsByVolume.sort(compare);
-			console.log(Hoth.ExceptionsByVolume);
 
 			// Print the HTML links
 			var exLinksHTML = '';
@@ -200,7 +189,10 @@
 						'">Delete Reports</a></div>';
 						
 						if (typeof(ex.client) == 'undefined') {
-							ex.message = ex.CLIENT;
+							ex.client = ex.CLIENT;
+						}
+						if (typeof(ex.url) == 'undefined') {
+							ex.url = ex.URL;
 						}
 						if (typeof(ex.message) == 'undefined') {
 							ex.message = ex.MESSAGE;
@@ -214,7 +206,7 @@
 						if (typeof(ex.stack) == 'undefined') {
 							ex.stack = ex.STACK;
 						}
-						
+						console.log(ex);
 						var detail = '<dl>'
 						+ '<dt>URL</dt><dd>' + ex.url + '</dd>'
 						+ '<dt>User Agent</dt><dd>' + ex.client + '</dd>'
