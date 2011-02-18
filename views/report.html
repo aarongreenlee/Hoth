@@ -163,7 +163,9 @@
 				Hoth.ExceptionsByVolume.push(ex);
 			}
 			// Sort all of our exceptions by last date observed
+			console.log(Hoth.ExceptionsByVolume);
 			Hoth.ExceptionsByVolume.sort(compare);
+			console.log(Hoth.ExceptionsByVolume);
 
 			// Print the HTML links
 			var exLinksHTML = '';
@@ -185,15 +187,15 @@
 		function formatException(id) {			
 			$.ajax(
 				{
-					 url: HOTH_REPORT_URI + '?method=report&exception='+id
+					 url: HOTH_REPORT_URI + '?method=report&exception='+ id
 					,async : false
 					,cache: false
 					,dataType: "json"
 					,success: function (ex)
 					{
 						var bar = '<div id="exceptionMenu">\
-						<a href="'HOTH_REPORT_URI + '?method=report&exception=' + id + '">View Raw JSON</a> | \
-						<a href="'HOTH_REPORT_URI + '?method=delete&exception=' +
+						<a href="' + HOTH_REPORT_URI + '?method=report&exception=' + id + '">View Raw JSON</a> | \
+						<a href="' + HOTH_REPORT_URI + '?method=delete&exception=' +
 						id +
 						'">Delete Reports</a></div>';
 						
@@ -246,11 +248,15 @@
 		
 		// Comarator to help sort exceptions by quantity.
 		function compare(a,b) {
-			if (a.incidentcount < b.incidentcount)
+			if (a.INCIDENTCOUNT < b.INCIDENTCOUNT)
+			{
 				return 1;
+			}
 
-			if (a.incidentcount > b.incidentcount)
+			if (a.INCIDENTCOUNT > b.INCIDENTCOUNT)
+			{
 				return -1;
+			}
 
 			return 0;
 		}
