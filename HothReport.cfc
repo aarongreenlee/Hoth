@@ -38,7 +38,6 @@ accessors=false
 
 		return this;
 	}
-
 	/** Quick report. Really a work in process.
 	*	@exception Accepts a hash value or 'all'
 	**/
@@ -58,7 +57,6 @@ accessors=false
 			return deserializeJSON (local.exception);
 		}
 	}
-
 	/** Quick report. Really a work in process.
 	*	@exception Accepts a hash value or 'all'
 	**/
@@ -91,13 +89,11 @@ accessors=false
 			return local.response;
 		}
 	}
-
 	/** Return the report's view **/
 	public string function getReportView () {
 		local.view = fileRead(expandPath('/Hoth') & '/views/report.html');
 		return local.view;
 	}
-
 	// -------------------------------------------------------------------------
 	private struct function generateExceptionIndex() {
 		// Read our file system
