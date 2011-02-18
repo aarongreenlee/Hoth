@@ -1,8 +1,18 @@
 <!-- todo: links need to be adjusted to your enviroment -->
-
 <html>
 	<head><title>Exceptions Observed by Hoth</title>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	
+	<script>	
+		// *********************************************************************
+		// IMPORTANT
+		// *********************************************************************
+		// update this variable to your uri
+		// this is how Hoth will know what URL to ping to get data
+		// from the server.
+		var HOTH_REPORT_URI = '/Hoth/Report.cfc';
+		// *********************************************************************
+	</script>
 	
 	<style>
 		/** Reset **/
@@ -62,7 +72,7 @@
 			padding: 5px;
 			-moz-border-radius: 10px;
 			border-radius: 10px;
-margin-bottom: 5px;
+			margin-bottom: 5px;
 		}
 		div.linegroup:nth-child(odd) {
 			background-color: #dbdef1;
@@ -107,92 +117,83 @@ margin-bottom: 5px;
 
 	<script type="text/javascript">
 	$().ready(function() {
-		/** Format a EPOCH into mm/dd/yyyy **/
-		Date.prototype.formatIntoDate = function () {
-			var r = (this.getMonth() + 1) + '/' + this.getDate() + '/' + this.getFullYear();
-			return r;
-		}
-
 		var Hoth = {
 			Exceptions : {}
 		};
-
-			$.ajax({
-				url: '/Hoth/Report.cfc?method=report',
-				cache: false,
-				dataType: 'json',
-				success: function(response){
-					populatePage(response);
-				}
-			});
-
-			var populatePage = function (ServerExceptions) {
-				Hoth.Exceptions = ServerExceptions;
-				
-				/** Prepare **/
-				Hoth.ExceptionsByVolume = [];
-				// Parse our exceptions sent by the server
-				for (var e in Hoth.Exceptions)
-				{
-					var ex = Hoth.Exceptions[e];
-					// Seperate JavaScript information from the data provided by
-					// the server
-					ex.js = {};
-					ex.js.short = e.substring(0,8).toUpperCase();
-					ex.js.instances = [];
-
-					// Create dates from the server EPOCH for our error report
-					for (var d in  ex.incidentdetail)
-					{
-						try {
-							ex.js.instances.push(new Date(d));
-						} catch (e) {
-							// silent.
-						}
-					}
-					// Sort the dates in descending order
-					ex.js.instances.sort();
-					ex.js.instances.reverse();
-
-					// Simplify our reference to the last exception date/time
-					ex.js.lastErrorOccured = ex.js.instances[0];
-
-					Hoth.ExceptionsByVolume.push(ex);
-				}
-				// Sort all of our exceptions by last date observed
-				Hoth.ExceptionsByVolume.sort(compare);
-
-				// Print the HTML links
-				var exLinksHTML = '';
-				for (var i in Hoth.ExceptionsByVolume)
-				{
-					var ex = Hoth.ExceptionsByVolume[i];
-					exLinksHTML += '<li><a href="#' + ex.FILENAME + '" data-id="' + ex.FILENAME + '">' +
-					ex.js.short + '</a> (' + ex.INCIDENTCOUNT + ')</li>';
-					$('#listing ul').html(exLinksHTML);
-				}
+		$.ajax({
+			url: HOTH_REPORT_URI + '?method=report',
+			cache: false,
+			dataType: 'json',
+			success: function(response){
+				populatePage(response);
 			}
+		});
 
-			// -----------------------------------------------------------------
-			$('#listing a').live('click',function(){
-				var id = $(this).attr('data-id').toLowerCase();
-				formatException(id);
-			});	
+		var populatePage = function (ServerExceptions) {
+			Hoth.Exceptions = ServerExceptions;
+			
+			// Prepare
+			Hoth.ExceptionsByVolume = [];
+			// Parse our exceptions sent by the server
+			for (var e in Hoth.Exceptions)
+			{
+				var ex = Hoth.Exceptions[e];
+				// Seperate JavaScript information from the data provided by
+				// the server
+				ex.js = {};
+				ex.js.short = e.substring(0,8).toUpperCase();
+				ex.js.instances = [];
 
+				// Create dates from the server EPOCH for our error report
+				for (var d in  ex.incidentdetail)
+				{
+					try {
+						ex.js.instances.push(new Date(d));
+					} catch (e) {
+						// silent.
+					}
+				}
+				// Sort the dates in descending order
+				ex.js.instances.sort();
+				ex.js.instances.reverse();
+
+				// Simplify our reference to the last exception date/time
+				ex.js.lastErrorOccured = ex.js.instances[0];
+
+				Hoth.ExceptionsByVolume.push(ex);
+			}
+			// Sort all of our exceptions by last date observed
+			Hoth.ExceptionsByVolume.sort(compare);
+
+			// Print the HTML links
+			var exLinksHTML = '';
+			for (var i in Hoth.ExceptionsByVolume)
+			{
+				var ex = Hoth.ExceptionsByVolume[i];
+				exLinksHTML += '<li><a href="#' + ex.FILENAME + '" data-id="' + ex.FILENAME + '">' +
+				ex.js.short + '</a> (' + ex.INCIDENTCOUNT + ')</li>';
+				$('#listing ul').html(exLinksHTML);
+			}
+		}
+
+		// -----------------------------------------------------------------
+		$('#listing a').live('click',function(){
+			var id = $(this).attr('data-id').toLowerCase();
+			formatException(id);
+		});	
 		
-					
 		function formatException(id) {			
 			$.ajax(
 				{
-					 url: '/Hoth/Report.cfc?method=report&exception='+id
+					 url: HOTH_REPORT_URI + '?method=report&exception='+id
 					,async : false
 					,cache: false
 					,dataType: "json"
 					,success: function (ex)
 					{
 						var bar = '<div id="exceptionMenu">\
-						<a href="/Hoth/Report.cfc?method=report&exception=' + id + '">View Raw JSON</a> | \
-						<a href="/Hoth/Report.cfc?method=delete&exception=' +
+						<a href="'HOTH_REPORT_URI + '?method=report&exception=' + id + '">View Raw JSON</a> | \
+						<a href="'HOTH_REPORT_URI + '?method=delete&exception=' +
 						id +
 						'">Delete Reports</a></div>';
 						
@@ -225,7 +226,7 @@ margin-bottom: 5px;
 				}
 			);		
 		}
-
+		// Print exceptions menu
 		function iterateExceptionContext(context) {
 			var output = [];
 			for (var i in context) {
@@ -236,12 +237,14 @@ margin-bottom: 5px;
 			}			
 			return output.join(""); 
 		}
-
+		// Parse the url hash for links
+		// converting foobar.com/Hoth/#{uuid}.log into {uuid}.
 		function parseExceptionString(s) {
 			var r = s.replace('#','');
 			return r.replace('.log','');
 		}
-
+		
+		// Comarator to help sort exceptions by quantity.
 		function compare(a,b) {
 			if (a.incidentcount < b.incidentcount)
 				return 1;
@@ -251,7 +254,6 @@ margin-bottom: 5px;
 
 			return 0;
 		}
-		
 	});
 	</script>
 </body>
