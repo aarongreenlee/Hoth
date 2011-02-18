@@ -82,4 +82,3 @@ Hoth has the following third-party dependencies or code included:
 
 MockBox (http://coldbox.org)
 MXUnit (http://mxunit.org)
-GetEpochTimeFromLocal() UDF (http://http://rob.brooks-bilson.com)
