@@ -33,6 +33,24 @@ post here:
 http://aarongreenlee.com/share/hoth-coldfusion-errors-tracking-reporting
 
 
+How can I see the Hoth report right away?
+-----------------------------------------
+If you would like to see the Hoth Report you can view the example exceptions
+by following these steps:
+
+	1.	Drop Hoth in your Web root--or--make a server mapping '/Hoth'
+	
+	2.	Copy the /Hoth/examples/ColdFusion/HothReportUI.cfc to your
+		Web site in an accessable location.
+	
+	3.	Hit the following URL:
+		http://yourwebsite.com/HothReportUI.cfc?method=index
+
+
+********************************************************************************
+********************************************************************************
+********************************************************************************
+
 Authors:
 -------
 Aaron Greenlee - http://aarongreenlee.com
