@@ -17,6 +17,9 @@ component
 	extends='Hoth.object.CoreConfig'
 	accessors=true {
 
+	// -------------------------------------------------------------------------
+	// BASIC HOTH SETTINGS (required)
+	// -------------------------------------------------------------------------
 	/** What is the name of your application? */
 	property name='applicationName'			default='HothDefaultConfig';
 
@@ -28,7 +31,9 @@ component
 		This folder should be empty. */
 	property name='logPath' 				default='/Hoth/logs';
 
-	// ------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	// HOTH EMAIL SETTINGS (required)
+	// -------------------------------------------------------------------------
 	/** Would you like new exceptions to be emailed to you? */
 	property name='EmailNewExceptions' 		default='false';
 
@@ -40,11 +45,27 @@ component
 
 	/** Would you like the raw JSON attached to the e-mail? */
 	property name='EmailNewExceptionsFile' 	default='false';
-	// ------------------------------------------------------------------------------
-	
-	
-	public Hoth.object.HothConfig function init()
+	// -------------------------------------------------------------------------
+	// HOTH REPORT SETTINGS (required)
+	// -------------------------------------------------------------------------
+
+	/** How you access the Hoth reports is up to you. When the reports are
+		generated Hoth needs to know how to build links so you can navigate
+		the report and get information from the server.
+
+		You are responsible for deciding how you wish to access reports. Once
+		you have figured that out, please, write the full URL here.
+	**/
+	property
+		name='HothReportURL'
+		default='http://office/lib/Hoth/HothReport.cfc';
+
+	// -------------------------------------------------------------------------
+	// Constructor
+	// -------------------------------------------------------------------------
+	public function init()
 	{
+		super.init();
 		return this;
 	}
 }

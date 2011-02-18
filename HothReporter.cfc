@@ -25,7 +25,7 @@ output="false"
 		// will use our default.
 		variables.Config = (structKeyExists(arguments, 'HothConfig'))
 			? arguments.HothConfig
-			: new Hoth.object.HothConfig();
+			: new Hoth.config.HothConfig();
 
 		VARIABLES._NAME = 'Hoth_' & variables.Config.getApplicationName();
 
@@ -36,7 +36,7 @@ output="false"
 		variables.paths.Report 		= variables.Config.getPath('exceptionReport');			// The actual report
 		variables.paths.Activity 	= variables.Config.getPath('exceptionReportActivity');	// Track when we save things. Helps understand volume.
 		//variables.paths.Index 	= variables.Config.getPath('exceptionIndex');			// Tracks the exception keys to prevent duplication
-		
+
 		return this;
 	}
 
@@ -95,7 +95,12 @@ output="false"
 	/** Return the report's view **/
 	public string function getReportView () {
 		local.view = fileRead(expandPath('/Hoth') & '/views/report.html');
-		return local.view;
+
+		// Replace the Hoth URL
+		return replaceNoCase(
+			 local.view
+			,'${HOTH_REPORT_URL}'
+			,variables.Config.getHothReportURL());
 	}
 
 	// -------------------------------------------------------------------------
@@ -106,7 +111,7 @@ output="false"
 
 		local.report = {};
 		for (i=1;i LTE ArrayLen(local.exceptions);i=i+1) {
-		
+
 			local.instance = {};
 			local.instance.filename =
 			listLast(local.exceptions[i],'\/');

@@ -14,34 +14,26 @@
 	// Modifications :---------------------------------------------------------
 	Modified		: 	12/13/2010 9:52:41 AM by Aaron Greenlee.
     				-	Now supporting ColdBox 3.0 RC1
+	Modified		: 	02/18/2011 1:20:12 PM by Aaron Greenlee.
+    				-	Now supporting the HothReportURL value.
 */
 component
 	implements='Hoth.object.iHothConfig'
 	extends='Hoth.object.CoreConfig'
 	accessors=true {
 
-	/** What is the name of your application? */
-	property name='applicationName'			default='HothUnitTests';
+	property name='applicationName' default='HothUnitTests';
+	property name='timeToLock' default='1';
+	property name='logPath' default='/Hoth/test/logs';
+	property name='EmailNewExceptions' default='true';
+	property name='EmailNewExceptionsTo' default='aarongreenlee@gmail.com';
+	property name='EmailNewExceptionsFrom' default='aarongreenlee@gmail.com';
+	property name='EmailNewExceptionsFile' default='true';
+	property name='HothReportURL' default='UNIT_TEST_WILL_POPULATE';
 
-	/** How many seconds should we lock file operations?
-		For most operations this is exclusive to a unique exception. */
-	property name='timeToLock' 				default='1';
-
-	/** Where would you like Hoth to save exception data?
-		This folder should be empty. */
-	property name='logPath' 				default='/Hoth/test/logs';
-
-	// ------------------------------------------------------------------------------
-	/** Would you like new exceptions to be emailed to you? */
-	property name='EmailNewExceptions' 		default='true';
-
-	/** What address(es) should receive these e-mails? */
-	property name='EmailNewExceptionsTo' 	default='aarongreenlee@gmail.com';
-
-	/** What address would you like these emails sent from? */
-	property name='EmailNewExceptionsFrom' 	default='aarongreenlee@gmail.com';
-
-	/** Would you like the raw JSON attached to the e-mail? */
-	property name='EmailNewExceptionsFile' 	default='true';
-	// ------------------------------------------------------------------------------
+	public function init ()
+	{
+		super.init();
+		return this;
+	}
 }

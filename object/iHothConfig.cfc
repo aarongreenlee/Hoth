@@ -13,7 +13,7 @@
 
 */
 interface  {
-	public Hoth.object.iHothConfig function init ();
+	public function init ();
 	public string function getLogPathExpanded();
 	public string function getPath (name);
 }
