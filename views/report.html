@@ -225,8 +225,14 @@
 			var output = [];
 			for (var i in context) {
 				var c = context[i];
-				var mainline = c.template + '[' + c.line + ']';
-				var subline = c.type + '(' + c.raw_trace + ')';
+				
+				var template = (c.TEMPLATE !== undefined) ? c.TEMPLATE : c.template;
+				var line = (c.LINE !== undefined) ? c.LINE : c.line;
+				var type= (c.TYPE !== undefined) ? c.TYPE : c.type;
+				var raw_trace = (c.RAW_TRACE !== undefined) ? c.RAW_TRACE : c.raw_trace;
+				
+				var mainline = template + '[' + line + ']';
+				var subline = type + '(' + raw_trace + ')';
 				output.push('<div class="linegroup"><div class="mainline">' + mainline + '</div><div class="subline">' + subline + '</div></div>');
 			}			
 			return output.join(""); 
