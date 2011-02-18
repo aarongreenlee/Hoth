@@ -129,7 +129,7 @@ output="false"
 					fileRead(variables.paths.Incidents & '/' & local.instance.filename);
 				}
 
-				local.instance.incidentCount = listLen(local.instances,chr(10));
+				local.instance.incidentcount = listLen(local.instances,chr(10));
 
 				// Save our report
 				local.report[local.instance.filename] = local.instance;

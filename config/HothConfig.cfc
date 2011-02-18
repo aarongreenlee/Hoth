@@ -28,8 +28,8 @@ component
 	property name='timeToLock' 				default='1';
 
 	/** Where would you like Hoth to save exception data?
-		This folder should be empty. */
-	property name='logPath' 				default='/Hoth/logs';
+		This folder should be empty when you start. */
+	property name='logPath' 				default='/Hoth/examples/Example_Logs';
 
 	// -------------------------------------------------------------------------
 	// HOTH EMAIL SETTINGS (required)
@@ -58,7 +58,7 @@ component
 	**/
 	property
 		name='HothReportURL'
-		default='http://office/lib/Hoth/HothReport.cfc';
+		default='http://office/lib/Hoth/examples/ColdFusion/HothReportUI.cfc';
 
 	// -------------------------------------------------------------------------
 	// Constructor

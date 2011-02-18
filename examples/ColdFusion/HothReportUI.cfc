@@ -3,10 +3,14 @@
 // this through obscurity. But, I prefer the approach shown in the ColdBox
 // example. That is what I use. I have not tried this code :(
 
+// You should replace the "new Hoth.config.HothConfig()" lines with the
+// classname path to your HothConfig. Hoth will generate a report for the
+// application's HothConfig you provide.
+
 component {
 	/** Loads the Web UI (HTML) **/
 	remote function index () returnformat='plain' {
-		local.HothReport = new Hoth.HothReporter( new atv.config.HothConfig() );
+		local.HothReport = new Hoth.HothReporter( new Hoth.config.HothConfig() );
 		return local.HothReport.getReportView();
 	}
 
@@ -20,7 +24,7 @@ component {
 		? arguments.exception
 		: 'all');
 
-		local.HothReport = new Hoth.HothReporter( new atv.config.HothConfig() );
+		local.HothReport = new Hoth.HothReporter( new Hoth.config.HothConfig() );
 		return local.HothReport.report(local.report);
 	}
 
@@ -32,7 +36,7 @@ component {
 			arguments.exception = 'all';
 		}
 
-		local.HothReport = new Hoth.HothReporter( new atv.config.HothConfig() );
+		local.HothReport = new Hoth.HothReporter( new Hoth.config.HothConfig() );
 
 		// Delete!
 		return local.HothReporter.delete(arguments.exception);
