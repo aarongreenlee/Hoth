@@ -97,3 +97,12 @@ Hoth has the following third-party dependencies or code included:
 
 MockBox (http://coldbox.org)
 MXUnit (http://mxunit.org)
+
+********************************************************************************
+********************************************************************************
+********************************************************************************
+
+Changelog:
+	02/09/2011 - The source was opened.
+	02/23/2011 - Merged the Bleeding branch. Users can now define their 
+				 URL in their HothConfig.cfc.
