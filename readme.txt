@@ -1,3 +1,18 @@
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+
+ __    __    ______   .___________. __    __  
+|  |  |  |  /  __  \  |           ||  |  |  | 
+|  |__|  | |  |  |  | `---|  |----`|  |__|  | 
+|   __   | |  |  |  |     |  |     |   __   | 
+|  |  |  | |  `--'  |     |  |     |  |  |  | 
+|__|  |__|  \______/      |__|     |__|  |__|
+
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+
 Hoth aims to help developers better understand exceptions--caught or not--in
 their application so you can prioritize resolution. Hoth is a simple but
 effective exception content tracking system. 
@@ -33,6 +48,24 @@ post here:
 http://aarongreenlee.com/share/hoth-coldfusion-errors-tracking-reporting
 
 
+How can I see the Hoth report right away?
+-----------------------------------------
+If you would like to see the Hoth Report you can view the example exceptions
+by following these steps:
+
+	1.	Drop Hoth in your Web root--or--make a server mapping '/Hoth'
+	
+	2.	Copy the /Hoth/examples/ColdFusion/HothReportUI.cfc to your
+		Web site in an accessable location.
+	
+	3.	Hit the following URL:
+		http://yourwebsite.com/HothReportUI.cfc?method=index
+
+
+********************************************************************************
+********************************************************************************
+********************************************************************************
+
 Authors:
 -------
 Aaron Greenlee - http://aarongreenlee.com
@@ -64,4 +97,3 @@ Hoth has the following third-party dependencies or code included:
 
 MockBox (http://coldbox.org)
 MXUnit (http://mxunit.org)
-GetEpochTimeFromLocal() UDF (http://http://rob.brooks-bilson.com)
