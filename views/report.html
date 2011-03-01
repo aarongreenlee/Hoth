@@ -121,7 +121,7 @@
 			Exceptions : {}
 		};
 		$.ajax({
-			url: HOTH_REPORT_URI + '?method=report',
+			url: HOTH_REPORT_URI + '?method=report&exception=all',
 			cache: false,
 			dataType: 'json',
 			success: function(response){
@@ -131,7 +131,6 @@
 
 		var populatePage = function (ServerExceptions) {
 			Hoth.Exceptions = ServerExceptions;
-			
 			// Prepare
 			Hoth.ExceptionsByVolume = [];
 			// Parse our exceptions sent by the server
@@ -150,7 +149,6 @@
 
 				// Simplify our reference to the last exception date/time
 				ex.js.lastErrorOccured = ex.js.instances[0];
-
 				Hoth.ExceptionsByVolume.push(ex);
 			}
 			// Sort all of our exceptions by last date observed
@@ -161,8 +159,10 @@
 			for (var i in Hoth.ExceptionsByVolume)
 			{
 				var ex = Hoth.ExceptionsByVolume[i];
-				exLinksHTML += '<li><a href="#' + ex.FILENAME + '" data-id="' + ex.FILENAME + '">' +
-				ex.js.short + '</a> (' + ex.INCIDENTCOUNT + ')</li>';
+				var filename = (ex.FILENAME === 'undefined') ? ex.filename : ex.FILENAME;
+				var incidentcount = (ex.INCIDENTCOUNT === 'undefined') ? ex.incidentcount : ex.INCIDENTCOUNT;
+				exLinksHTML += '<li><a href="#' + ex.filename + '" data-id="' + ex.filename + '">' +
+				ex.js.short + '</a> (' + ex.incidentcount + ')</li>';
 				$('#listing ul').html(exLinksHTML);
 			}
 		}
