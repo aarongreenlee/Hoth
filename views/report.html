@@ -151,8 +151,7 @@
 			for (var i in Hoth.ExceptionsByVolume)
 			{
 				var ex = Hoth.ExceptionsByVolume[i];
-				var filename = (ex.FILENAME === 'undefined') ? ex.filename : ex.FILENAME;
-				var incidentcount = (ex.INCIDENTCOUNT === 'undefined') ? ex.incidentcount : ex.INCIDENTCOUNT;
+				convertKeysToLowercase(ex);
 				exLinksHTML += '<li><a href="#' + ex.filename + '" data-id="' + ex.filename + '">' +
 				ex.js.short + '</a> (' + ex.incidentcount + ')</li>';
 				$('#listing ul').html(exLinksHTML);
@@ -180,24 +179,7 @@
 						id +
 						'">Delete Reports</a></div>';
 						
-						if (typeof(ex.client) == 'undefined') {
-							ex.client = ex.CLIENT;
-						}
-						if (typeof(ex.url) == 'undefined') {
-							ex.url = ex.URL;
-						}
-						if (typeof(ex.message) == 'undefined') {
-							ex.message = ex.MESSAGE;
-						}
-						if (typeof(ex.detail) == 'undefined') {
-							ex.detail = ex.DETAIL;
-						}
-						if (typeof(ex.context) == 'undefined') {
-							ex.context = ex.CONTEXT;
-						}
-						if (typeof(ex.stack) == 'undefined') {
-							ex.stack = ex.STACK;
-						}
+						convertKeysToLowercase(ex);
 						console.log(ex);
 						var detail = '<dl>'
 						+ '<dt>URL</dt><dd>' + ex.url + '</dd>'
@@ -216,15 +198,10 @@
 		function iterateExceptionContext(context) {
 			var output = [];
 			for (var i in context) {
-				var c = context[i];
-				
-				var template = (c.TEMPLATE !== undefined) ? c.TEMPLATE : c.template;
-				var line = (c.LINE !== undefined) ? c.LINE : c.line;
-				var type= (c.TYPE !== undefined) ? c.TYPE : c.type;
-				var raw_trace = (c.RAW_TRACE !== undefined) ? c.RAW_TRACE : c.raw_trace;
-				
-				var mainline = template + '[' + line + ']';
-				var subline = type + '(' + raw_trace + ')';
+				var c = context[i];			
+				convertKeysToLowercase(c);
+				var mainline = c.template + '[' + c.line + ']';
+				var subline = c.type + '(' + c.raw_trace + ')';
 				output.push('<div class="linegroup"><div class="mainline">' + mainline + '</div><div class="subline">' + subline + '</div></div>');
 			}			
 			return output.join(""); 
@@ -235,21 +212,24 @@
 			var r = s.replace('#','');
 			return r.replace('.log','');
 		}
+		// Accept an JSON object and remap keys to lower case.
+		function convertKeysToLowercase(o) {
+			for (k in o)
+			{
+				if (o[k] !== 'object') {
+					o[k.toLowerCase()] = o[k];
+				}
+			}
+		}
 		
 		// Comarator to help sort exceptions by quantity.
 		function compare(a,b) {
-			var aCount = (a.INCIDENTCOUNT == undefined) ? a.incidentcount : a.INCIDENTCOUNT;
-			var bCount = (b.INCIDENTCOUNT == undefined) ? b.incidentcount : b.INCIDENTCOUNT;
-			
-			if (aCount < bCount)
-			{
-				return 1;
-			}
+			convertKeysToLowercase(a); convertKeysToLowercase(b);
+			if (a.incidentcount < b.incidentcount)
+			{ return 1; }
 
-			if (aCount > bCount)
-			{
-				return -1;
-			}
+			if (a.incidentcount > b.incidentcount)
+			{ return -1; }
 
 			return 0;
 		}
