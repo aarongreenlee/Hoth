@@ -141,14 +141,6 @@
 				// the server
 				ex.js = {};
 				ex.js.short = e.substring(0,8).toUpperCase();
-				ex.js.instances = [];
-
-				// Sort the dates in descending order
-				ex.js.instances.sort();
-				ex.js.instances.reverse();
-
-				// Simplify our reference to the last exception date/time
-				ex.js.lastErrorOccured = ex.js.instances[0];
 				Hoth.ExceptionsByVolume.push(ex);
 			}
 			// Sort all of our exceptions by last date observed
@@ -246,12 +238,15 @@
 		
 		// Comarator to help sort exceptions by quantity.
 		function compare(a,b) {
-			if (a.INCIDENTCOUNT < b.INCIDENTCOUNT)
+			var aCount = (a.INCIDENTCOUNT == undefined) ? a.incidentcount : a.INCIDENTCOUNT;
+			var bCount = (b.INCIDENTCOUNT == undefined) ? b.incidentcount : b.INCIDENTCOUNT;
+			
+			if (aCount < bCount)
 			{
 				return 1;
 			}
 
-			if (a.INCIDENTCOUNT > b.INCIDENTCOUNT)
+			if (aCount > bCount)
 			{
 				return -1;
 			}
