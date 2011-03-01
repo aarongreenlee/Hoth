@@ -67,7 +67,7 @@ accessors = true
 			{
 				 'applicationName' = arguments.HothConfig.getApplicationName()
 				,'logPath' = arguments.HothConfig.getLogPath()
-				,'created' = arguments.HothConfig.GetEpochTimeFromLocal()
+				,'created' = now()
 			};
 			arrayAppend(
 				 local.knownApplications
