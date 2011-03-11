@@ -1,0 +1,1 @@
+<cfcomponent extends="proxyApplication"></cfcomponent>

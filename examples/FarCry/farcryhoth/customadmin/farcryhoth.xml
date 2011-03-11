@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webtop>
+	<section mergeType="merge" id="admin">
+		<subsection mergeType="merge" id="farcryhothSubSection" label="Hoth">
+			<menu mergeType="merge" sequence="10" id="hothMenu" label="Hoth">
+				<menuitem sequence="10" id="hothreportsmenuitem" label="Reports" link="/admin/customadmin.cfm?module=hoth.cfm&amp;plugin=farcryhoth" />
+			</menu>
+		</subsection>
+	</section>
+</webtop>

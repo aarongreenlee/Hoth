@@ -1,0 +1,11 @@
+FarCry plugin for the Hoth Exception Reporting framework.
+Hoth was created by Aaron Greenlee
+http://aarongreenlee.com/share/hoth-coldfusion-errors-tracking-reporting
+
+FarCry plugin created by Sean Coyne (sean@n42designs.com)
+
+This is an example of the farcryhoth FarCry plugin.  You can find the latest version of this plugin at https://github.com/seancoyne/farcryhoth
+
+I suggest you use the latest version of the plugin, however, if you want to use this version of the plugin, you need to place a copy of Hoth in 
+the farcryhoth/packages/custom/hoth directory. You will also want to follow the installation instructions at: 
+https://github.com/seancoyne/farcryhoth/blob/master/README
