@@ -21,7 +21,7 @@
 
 component {
 
-	// You will definitly want to change this path...
+	// You will definitely want to change this path...
 	variables.ApplicationsHothConfig = new Hoth.config.HothConfig();
 
 	/** Loads the Web UI (HTML) **/
