@@ -109,11 +109,33 @@ by following these steps:
 	1.	Drop Hoth in your Web root--or--make a server mapping '/Hoth'
 	
 	2.	Copy the /Hoth/examples/ColdFusion/HothReportUI.cfc to your
-		Web site in an accessable location.
+		Web site in an accessible location.
 	
 	3.	Hit the following URL:
 		http://yourwebsite.com/HothReportUI.cfc?method=index
+		
+	4.	You should now be looking at example Hoth exceptions.
 
+
+High-level, 50,000 ft. view of what you need to do...
+-----------------------------------------------------
+There are two distinct parts to Hoth: Tracking and Reporting.
+
+	Tracking
+	--------
+	Tracking is common to all applications and very easy to set up. These
+	instructions will apply to all applications.
+	
+	Reporting
+	---------
+	Things become a little (but not a lot) more complex here. Reporting
+	requires access to your server from a HTTP call. This is your responsibility
+	to setup--and there are lots of paths you can take to implement reporting.
+	
+	If you take the path of using the HothReportUI.cfc you will definitely 
+	want to open that file and make some edits (like adding the path to
+	your own HothConfig).
+	
 
 ********************************************************************************
 ********************************************************************************
