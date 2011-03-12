@@ -184,6 +184,12 @@ accessors=false
 			local.result.tagcontext 	= (structKeyExists(arguments.Exception, 'tagContext')) ? arguments.Exception.tagContext : 'undefined';
 			local.result.validException = true;
 			local.result.format 		= 'Native';
+			
+			// ADDED by Benoit Hediard to get real detail and message in FW1
+			if (local.result.message == "Event handler exception." && structKeyExists(arguments.Exception, "Cause")) {
+				local.result.detail 	= (structKeyExists(arguments.Exception.Cause, 'detail')) ? arguments.Exception.Cause.detail : 'undefined';
+				local.result.message 	= (structKeyExists(arguments.Exception.Cause, 'message')) ? arguments.Exception.Cause.message : 'undefined';
+			};
 			return local.result;
 		} else {
 			//detail,type,tagcontext,stacktrace,message

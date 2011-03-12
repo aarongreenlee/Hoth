@@ -26,8 +26,8 @@ component {
 
 	/** Loads the Web UI (HTML) **/
 	remote function index () returnformat='plain' {
-		local.HothReport = new Hoth.HothReporter( new Hoth.config.HothConfig() );
-		return local.HothReport.getReportView(variables.ApplicationsHothConfig);
+		local.HothReport = new Hoth.HothReporter(variables.ApplicationsHothConfig);
+		return local.HothReport.getReportView();
 	}
 
 	/** Access Hoth report data as JSON.
@@ -55,6 +55,6 @@ component {
 		local.HothReport = new Hoth.HothReporter(variables.ApplicationsHothConfig);
 
 		// Delete!
-		return local.HothReporter.delete(arguments.exception);
+		return local.HothReport.delete(arguments.exception);
 	}
 }
