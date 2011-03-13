@@ -65,11 +65,16 @@ output="false"
 	public array function delete (required string exception)
 	{
 
-		if (arguments.exception=='all')
+		local.response = [];
+		if (arguments.exception == 'all')
 		{
-			// hahah - not yet.
-		} else {
-			local.exceptionPath = variables.paths.Exceptions & '/' & arguments.exception;
+			lock name=VARIABLES._NAME timeout=variables.Config.getTimeToLock() type="exclusive" {
+				directoryDelete(variables.paths.Exceptions, true);
+				directoryDelete(variables.paths.Incidents, true);
+				directoryCreate(variables.paths.Exceptions);
+				directoryCreate(variables.paths.Incidents);
+			}
+		} else {			local.exceptionPath = variables.paths.Exceptions & '/' & arguments.exception;
 			local.incidentPath = variables.paths.Incidents & '/' & arguments.exception;
 
 			local.response = [];
