@@ -140,7 +140,7 @@
 				// Seperate JavaScript information from the data provided by
 				// the server
 				ex.js = {};
-				ex.js.short = e.substring(0,8).toUpperCase();
+				ex.js.short = e.substring(0,8); // .toUpperCase()
 				Hoth.ExceptionsByVolume.push(ex);
 			}
 			// Sort all of our exceptions by last date observed
