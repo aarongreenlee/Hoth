@@ -87,7 +87,7 @@ accessors=false
 			// Hash a unique key for the content of each property within the exception
 			local.index = {};
 			local.index.stack = ( len(local.e.stack) > 0) ? hash(lcase(local.e.stack),'SHA') : '_no_stack';
-			local.index.key = local.index.stack;
+			local.index.key = lcase(local.index.stack);
 
 			local.saveDetails = false;
 
@@ -184,7 +184,7 @@ accessors=false
 			local.result.tagcontext 	= (structKeyExists(arguments.Exception, 'tagContext')) ? arguments.Exception.tagContext : 'undefined';
 			local.result.validException = true;
 			local.result.format 		= 'Native';
-			
+
 			// ADDED by Benoit Hediard to get real detail and message in FW1
 			if (local.result.message == "Event handler exception." && structKeyExists(arguments.Exception, "Cause")) {
 				local.result.detail 	= (structKeyExists(arguments.Exception.Cause, 'detail')) ? arguments.Exception.Cause.detail : 'undefined';
