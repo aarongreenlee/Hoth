@@ -2,10 +2,18 @@
 	<cfargument name="targetPage" type="string" required="true" />
 	<cfscript>
 		// Place Hoth into Application Memory.
-		if (!structKeyExists(application, 'HothTracker'))
-		{
-			application.HothTracker =
-				new Hoth.HothTracker( new config.HothConfig() );
+		if (!structKeyExists(application, 'HothTracker'))	{
+			
+			lock
+				name="#application.ApplicationName#_HothTracker"
+				type="exclusive"
+				timeout="10"   {
+				
+				if (!structKeyExists(application, 'HothTracker'))	{
+					application.HothTracker = new Hoth.HothTracker( new config.HothConfig() );					
+				}
+				
+			}
 		}
 
 		// anything you need here...
