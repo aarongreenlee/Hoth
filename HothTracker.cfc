@@ -247,7 +247,7 @@ accessors=false
 			}
 			if (!directoryExists(variables.paths.Incidents)) {
 				directoryCreate(variables.paths.Incidents);
-				fileWrite(variables.paths.Exceptions & '/_readme.txt','Hoth: The files within this directory contain the details about the volume of errors for each unique exception.');
+				fileWrite(variables.paths.Incidents & '/_readme.txt','Hoth: The files within this directory contain the details about the volume of errors for each unique exception.');
 			}
 		}
 
