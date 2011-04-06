@@ -148,6 +148,7 @@ Sean Coyne - http://www.n42designs.com
 Dan Skaggs - http://TNTechnoHermit.com
 Mike Henk - http://www.henke.ws
 James Brown - http://coldfusioning.com
+Dave Shuck - http://daveshuck.com
 
 --------------------------------------------------------------------------------
 
