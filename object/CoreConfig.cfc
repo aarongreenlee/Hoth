@@ -47,7 +47,7 @@ accessors='true'
 	/** Expands a path **/
 	public string function getLogPathExpanded ()
 	{
-		return expandPath( getLogPath() );
+		return variables.logPathIsRelative ? expandPath( getLogPath() ) : getLogPath();
 	}
 
 	/** Return a path for Hoth. */
