@@ -28,8 +28,9 @@ output="false"
 			: new Hoth.config.HothConfig();
 
 		VARIABLES._NAME = 'Hoth_' & variables.Config.getApplicationName();
-
+		
 		variables.exceptionKeys 	= ['detail','type','tagcontext','stacktrace','message'];// Required exception keys
+		variables.logPathIsRelative = variables.Config.getLogPathIsRelative();
 		variables.paths.LogPath 	= variables.Config.getLogPathExpanded();				// Get the root location for our logging.
 		variables.paths.Exceptions 	= variables.Config.getPath('exceptions');				// Track the unique exceptions.
 		variables.paths.Incidents 	= variables.Config.getPath('incidents');				// Track the hits per exception.

@@ -31,6 +31,10 @@ component
 		This folder should be empty when you start. */
 	property name='logPath' 				default='/Hoth/examples/Example_Logs';
 
+	/** Is the log file location relative to the webroot?
+		This folder should be empty when you start. */
+	property name='logPathIsRelative' 		default='true';
+	
 	// -------------------------------------------------------------------------
 	// HOTH EMAIL SETTINGS (required)
 	// -------------------------------------------------------------------------
