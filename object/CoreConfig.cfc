@@ -47,6 +47,9 @@ accessors='true'
 	/** Expands a path **/
 	public string function getLogPathExpanded ()
 	{
+		if (!structKeyExists(variables, 'logPathIsRelative')) {
+			variables.logPathIsRelative = false;
+		}
 		return variables.logPathIsRelative ? expandPath( getLogPath() ) : getLogPath();
 	}
 
