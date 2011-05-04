@@ -127,25 +127,25 @@ accessors=false
 						,"Message: " & local.e.message
 						,"Machine Name: " & local.INetAddress.getLocalHost().getHostName()
 						,"Address: " & local.url
-						,"To view the exception info attached copy and paste into FireBug's console (x = exception) and press CRTL+Enter."
 					];
 
-					local.Mail = new Mail(	 subject='Hoth Exception (' & cgi.HTTP_HOST & ') ' & local.index.key
+					local.Mail = new Mail(	 subject='Hoth Exception (' & variables.Config.getApplicationName() & ') ' & local.index.key
 											,to=variables.Config.getEmailNewExceptionsTo()
 											,from=variables.Config.getEmailNewExceptionsFrom());
 
 					// Attach the file
-					if ( variables.Config.getEmailNewExceptionsFile() )
+					if ( variables.Config.getEmailNewExceptionsFile() ) {
 						local.Mail.addParam(file=local.exceptionFile);
-
+						ArrayAppend( local.emailBody, "To view the exception info attached copy and paste into FireBug's console (x = exception) and press CRTL+Enter." );
+					}
+					
 					local.Mail.addPart(
 						 type='text'
 						,charset='utf-8'
 						,wraptext=72
-						,body=arrayToList(local.emailBody, "#chr(13)##chr(13)#")
 					);
 
-					local.mail.Send();
+					local.mail.Send( body=arrayToList(local.emailBody, "#chr(10)##chr(13)#") );
 			}
 		// ------------------------------------------------------------------------------
 		} catch (any e) {
