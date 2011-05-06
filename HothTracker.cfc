@@ -136,16 +136,24 @@ accessors=false
 					// Attach the file
 					if ( variables.Config.getEmailNewExceptionsFile() ) {
 						local.Mail.addParam(file=local.exceptionFile);
-						ArrayAppend( local.emailBody, "To view the exception info attached copy and paste into FireBug's console (x = exception) and press CRTL+Enter." );
+						ArrayAppend( local.emailBody, "To view the attached exception info, copy and paste into FireBug's console (x = exception) and press CRTL+Enter." );
 					}
 					
-					local.Mail.addPart(
-						 type='text'
-						,charset='utf-8'
-						,wraptext=72
-					);
-
-					local.mail.Send( body=arrayToList(local.emailBody, "#chr(10)##chr(13)#") );
+					// Show exception as HTML inline?
+					if ( variables.Config.getEmailExceptionsAsHTML() ) {
+						local.Mail.setType( "html" );
+						savecontent variable="local.emailBody" {
+							writeOutput( arrayToList( local.emailBody, "<br />" ) );
+							writeOutput( "<br />Exception Details:<br />");
+							writeDump( local.e );
+						}
+						local.Mail.setBody( local.emailBody );
+					}
+					else {
+						local.Mail.setBody( arrayToList( local.emailBody, "#chr(10)##chr(13)#" ) );
+					}
+					
+					local.mail.Send();
 			}
 		// ------------------------------------------------------------------------------
 		} catch (any e) {
