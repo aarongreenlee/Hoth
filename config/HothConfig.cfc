@@ -49,6 +49,10 @@ component
 
 	/** Would you like the raw JSON attached to the e-mail? */
 	property name='EmailNewExceptionsFile' 	default='false';
+	
+	/** Would you like HTML emails which contain the exception? */
+	property name='EmailExceptionsAsHTML' 	default='false';
+
 	// -------------------------------------------------------------------------
 	// HOTH REPORT SETTINGS (required)
 	// -------------------------------------------------------------------------
