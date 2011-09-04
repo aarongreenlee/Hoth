@@ -73,7 +73,7 @@ accessors=false
 				,message 	= structKeyExists(local.ExceptionStructure,'message') ? local.ExceptionStructure.message : '_noMessage'
 				,stack 		= structKeyExists(local.ExceptionStructure,'stacktrace') ? local.ExceptionStructure.stacktrace : '_no_stacktrace'
 				,context 	= structKeyExists(local.ExceptionStructure,'tagcontext') ? local.ExceptionStructure.tagcontext : '_no_tagcontext'
-				,format 	= structKeyExists(local.ExceptionStructure,'format') ? local.ExceptionStructure.tagcontext : '_no_format'
+				,format     = structKeyExists(local.ExceptionStructure,'format') ? local.ExceptionStructure.format: '_no_format'
 				,url		= CGI.HTTP_HOST & CGI.path_info
 				,client		= CGI.HTTP_USER_AGENT
 			};
