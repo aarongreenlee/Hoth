@@ -98,8 +98,7 @@ How do you use Hoth?
 You can read about, and learn how to implement, Hoth by reading the blog
 post here:
 
-http://aarongreenlee.com/share/hoth-coldfusion-errors-tracking-reporting
-
+https://github.com/aarongreenlee/Hoth/wiki
 
 How can I see the Hoth report right away?
 -----------------------------------------
