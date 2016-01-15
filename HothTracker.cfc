@@ -247,7 +247,7 @@ accessors=false
 	private void function verifyDirectoryStructure() {
 		// Verify our index diectory exists
 
-		/** Ensure our directory structure is as expected. */
+		/* Ensure our directory structure is as expected. */
 		lock name=VARIABLES._NAME timeout=variables.Config.getTimeToLock() type="exclusive" {
 			if (!directoryExists(variables.paths.Exceptions)) {
 				directoryCreate(variables.paths.Exceptions);
