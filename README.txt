@@ -1,3 +1,5 @@
+Status as of July 2016: Hoth is stable and can help you identify, track, and prioritize your ColdFusion bugs. However, I will not be investing resources in this package going forward. I had done quite a bit of ColdFusion work as a contractor working on projects for Adobe but that time is passed. If you would like to continue to grow this project please reach out to me as I would be happy to add you as a organizer.
+
 		---------------------------------------------
 		---------------------------------------------
 		---------------------------------------------
